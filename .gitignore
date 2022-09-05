@@ -15,11 +15,11 @@ build/
 .sts4-cache
 
 ### IntelliJ IDEA ###
-.idea
+chessBoardTask/.idea
 *.iws
 *.iml
 *.ipr
-out/
+chessBoardTask/out/
 !**/src/main/**/out/
 !**/src/test/**/out/
 
@@ -34,4 +34,4 @@ out/
 .vscode/
 
 ##maven
-target/
+chessBoardTask/target/

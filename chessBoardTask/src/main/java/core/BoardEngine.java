@@ -9,6 +9,21 @@ public class BoardEngine implements Engine {
     private Reader reader;
     private BoardPrinter printer;
 
+    public Reader getReader() {
+        return reader;
+    }
+
+    public void setReader(Reader reader) {
+        this.reader = reader;
+    }
+
+    public BoardPrinter getPrinter() {
+        return printer;
+    }
+
+    public void setPrinter(BoardPrinter printer) {
+        this.printer = printer;
+    }
 
     public BoardEngine(BoardPrinter printer, Reader reader) {
         this.printer = printer;

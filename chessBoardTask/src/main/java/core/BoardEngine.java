@@ -13,21 +13,18 @@ public class BoardEngine implements Engine {
         return reader;
     }
 
-    public void setReader(Reader reader) {
-        this.reader = reader;
-    }
-
     public BoardPrinter getPrinter() {
         return printer;
     }
 
-    public void setPrinter(BoardPrinter printer) {
-        this.printer = printer;
+    public BoardEngine setReader(Reader reader) {
+        this.reader = reader;
+        return this;
     }
 
-    public BoardEngine(BoardPrinter printer, Reader reader) {
+    public BoardEngine setPrinter(BoardPrinter printer) {
         this.printer = printer;
-        this.reader = reader;
+        return this;
     }
 
     @Override

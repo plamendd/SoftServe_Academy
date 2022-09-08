@@ -21,7 +21,7 @@ public class SortingTrianglesEngine implements Engine {
 
     @Override
     public void start() {
-        String input;
+            String input;
 
             printer.printInstructions();
             input = reader.readLine();

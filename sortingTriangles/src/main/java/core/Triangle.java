@@ -1,12 +1,13 @@
 package core;
 
+import java.math.BigDecimal;
+
 public class Triangle {
     private double firstSide;
     private double secondSide;
     private double thirdSide;
     private String name;
     private double area;
-
 
 
     public double getFirstSide() {
@@ -55,5 +56,8 @@ public class Triangle {
         return this;
     }
 
-
+    @Override
+    public String toString() {
+        return "[Triangle " + getName() + "]: " + getArea() + "cm.";
+    }
 }

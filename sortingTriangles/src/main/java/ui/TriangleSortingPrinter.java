@@ -1,6 +1,8 @@
 package ui;
 
+import core.Triangle;
+
 public interface TriangleSortingPrinter extends Printer{
     void printContinue();
-    void printResultFromSortingTriangles();
+    void printResultFromSortingTriangles(Triangle triangle);
 }

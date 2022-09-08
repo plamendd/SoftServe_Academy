@@ -1,7 +1,10 @@
 package ui;
 
 
+import core.Triangle;
+
 public class ConsolePrinter implements TriangleSortingPrinter {
+    static int counter = 0;
 
     @Override
     public void printInstructions() {
@@ -24,8 +27,19 @@ public class ConsolePrinter implements TriangleSortingPrinter {
     }
 
     @Override
-    public void printResultFromSortingTriangles() {
+    public void printResultFromSortingTriangles(Triangle triangle) {
+        counter++;
+        StringBuilder builder = new StringBuilder()
+                .append(counter)
+                .append(". ")
+                .append("[Triangle ")
+                .append(triangle.getName())
+                .append("]: ")
+                .append( String.format("%1$,.2f", triangle.getArea()))
+                .append("cm.");
 
 
+
+        System.out.println(builder);
     }
 }

@@ -4,6 +4,7 @@ import core.utils.SortingTrianglesUtils;
 import ui.TriangleSortingPrinter;
 import ui.Reader;
 
+import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.PriorityQueue;
 
@@ -21,53 +22,56 @@ public class SortingTrianglesEngine implements Engine {
     @Override
     public void start() {
         String input;
-        do {
+
             printer.printInstructions();
             input = reader.readLine();
             doWork(input);
-                    printer.printResultFromSortingTriangles(TODO);
+            while (!queue.isEmpty()) {
+                printer.printResultFromSortingTriangles(queue.poll());
+            }
             stop();
             return;
-        }
-        while ("y".equalsIgnoreCase(input) || "yes".equalsIgnoreCase(input));
+
+
 
     }
 
     @Override
     public void doWork(String input) {
         int parametersCount = 4;
-        while(true){
-            String [] splitInput = input.split(",");
-            if (splitInput.length != parametersCount ){
-                printer.printError();
-                return;
-            }
-            Arrays.stream(splitInput).forEach(x -> x.trim());
-            Triangle triangle = new Triangle();
-            triangle.setName(splitInput[0]);
+          while (true) {
+              String[] splitInput = input.split(",");
+              if (splitInput.length != parametersCount) {
+                  printer.printError();
+                  return;
+              }
+              Arrays.stream(splitInput).forEach(x -> x.trim());
+              Triangle triangle = new Triangle();
+              triangle.setName(splitInput[0]);
 
-            for (int i = 1; i <= 3 ; i++) {
-                if (!validateInput(splitInput[i])) {
-                    printer.printError();
-                    return;
-                }
-            }
-            triangle.setFirstSide(Double.parseDouble(splitInput[1]));
-            triangle.setSecondSide(Double.parseDouble(splitInput[2]));
-            triangle.setThirdSide(Double.parseDouble(splitInput[3]));
-            triangle.setArea(calculateAreaByHeron(triangle.getFirstSide(),
-                    triangle.getSecondSide(), triangle.getThirdSide()));
+              for (int i = 1; i <= 3; i++) {
+                  if (!validateInput(splitInput[i])) {
+                      printer.printError();
+                      return;
+                  }
+              }
+              triangle.setFirstSide(Double.parseDouble(splitInput[1]));
+              triangle.setSecondSide(Double.parseDouble(splitInput[2]));
+              triangle.setThirdSide(Double.parseDouble(splitInput[3]));
+              triangle.setArea(calculateAreaByHeron(triangle.getFirstSide(),
+                      triangle.getSecondSide(), triangle.getThirdSide()));
 
-            queue.add(triangle, triangle.getArea());
-            printer.printContinue();
-            input = reader.readLine();
+              queue.add(triangle);
+              printer.printContinue();
+              input = reader.readLine();
+              if ("y".equalsIgnoreCase(input) || "yes".equalsIgnoreCase(input)){
+                  printer.printInstructions();
+                  input = reader.readLine();
+              } else {
+                  break;
+              }
 
-            if (!"y".equalsIgnoreCase(input) || !"yes".equalsIgnoreCase(input)){
-                return;
-            }
-
-
-        }
+          }
 
     }
 

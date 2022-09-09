@@ -32,7 +32,6 @@ public class FileParserEngine implements Engine {
 
         if (splitInput.length < 2 ||  splitInput.length > 3 ){
             printer.printError();
-            printer.printExit();
             return;
         }
         if (splitInput.length == 2){

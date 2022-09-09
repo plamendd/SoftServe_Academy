@@ -10,12 +10,12 @@ public class FileParser {
 
 
     public static void main(String[] args) {
-        FileParser envelopAnalysis = new FileParser();
-        envelopAnalysis.setEngine(new FileParserEngine()
+        FileParser fileParser = new FileParser();
+        fileParser.setEngine(new FileParserEngine()
                 .setPrinter(new ConsolePrinter())
                 .setReader(new ConsoleReader(new Scanner(System.in))));
 
-        envelopAnalysis.run();
+        fileParser.run();
 
     }
 

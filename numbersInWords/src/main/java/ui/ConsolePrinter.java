@@ -1,18 +1,18 @@
 package ui;
 
 
-public class ConsolePrinter implements FileParserPrinter {
+public class ConsolePrinter implements NumberInWordsPrinter {
 
 
     @Override
     public void printInstructions() {
-        System.out.println("On the next line type 'path to file' and 'word' which will be counted' or 'path to file' and 'word' to be replaced with 'other word'.");
+        System.out.println("On the next line type one positive number under one thousand.");
     }
 
     @Override
     public void printError() {
         System.out.println("Your input is incorrect !");
-        System.out.println("You have to type 'path to file' and 'word' which will be counted' or 'path to file' and 'word' to be replaced with 'other word'.");
+        System.out.println("You have to type one positive number under one thousand.");
     }
 
     @Override
@@ -21,8 +21,14 @@ public class ConsolePrinter implements FileParserPrinter {
     }
 
     @Override
+    public void printResult(String result) {
+        System.out.println(result);
+    }
+
+    @Override
     public void printExit(){
         System.out.println("Stopping the program...");
     }
+
 
 }

@@ -28,7 +28,7 @@ public class BoardEngine implements Engine {
     }
 
     @Override
-    public void start() {
+    public boolean start() {
         printer.printInstructions();
         String input = reader.readLine();
 
@@ -36,26 +36,28 @@ public class BoardEngine implements Engine {
             doWork(input);
             printer.printInstructions();
             input = reader.readLine();
+            return false;
         }
         stop();
+        return true;
     }
 
     @Override
-    public void doWork(String input) {
+    public boolean doWork(String input) {
         String[] args = input.split("\\s");
         if (!checkParametersCount(args)) {
             printer.printError();
-            return;
+            return false;
         }
-        if (!checkParametersRange(args)) {
+        if (!checkParametersRange(args[0], args[1])) {
             printer.printError();
-            return;
+            return false;
         }
         int height = Integer.parseInt(args[0]);
         int width = Integer.parseInt(args[1]);
 
         printer.printBoard(generateBoard(height, width));
-        return;
+        return true;
 
     }
 
@@ -64,15 +66,15 @@ public class BoardEngine implements Engine {
         printer.printExit();
     }
 
-    private boolean checkParametersCount(String[] args) {
+    protected boolean checkParametersCount(String[] args) {
         int parametersCount = args.length;
         int requiredParametersCount = 2;
         return parametersCount == requiredParametersCount;
     }
 
-    private boolean checkParametersRange(String[] args) {
-        Integer height = BoardUtils.parseIntOrNull(args[0]);
-        Integer width = BoardUtils.parseIntOrNull(args[1]);
+    protected boolean checkParametersRange(String first, String second) {
+        Integer height = BoardUtils.parseIntOrNull(first);
+        Integer width = BoardUtils.parseIntOrNull(second);
         return (height != null && height > 0) && (width != null && width > 0);
     }
 
@@ -80,11 +82,12 @@ public class BoardEngine implements Engine {
      * Generate 2D Matrix with given dimensions.
      * Fills it with '*' -> when row is even number == coll is even number
      * Fills it with ' ' -> when its not.
+     *
      * @param height
      * @param width
      * @return 2D matrix of chars;
      */
-    private char[][] generateBoard(int height, int width) {
+    protected char[][] generateBoard(int height, int width) {
         char[][] board = new char[height][width];
         for (int col = 0; col < height; col++) {
             for (int row = 0; row < width; row++) {

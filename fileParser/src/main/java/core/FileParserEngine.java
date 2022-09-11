@@ -10,9 +10,7 @@ public class FileParserEngine implements Engine {
     private FileParserPrinter printer;
     private FileParserStrategy  fileParserStrategy ;
 
-    public FileParserEngine  () {
 
-    }
 
     @Override
     public void start() {

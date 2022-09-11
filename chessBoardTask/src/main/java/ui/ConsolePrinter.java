@@ -8,7 +8,6 @@ public class ConsolePrinter implements BoardPrinter {
     @Override
     public void printInstructions() {
         System.out.println("For generating a matrix with height and width: -> Type two  positive numbers separated by whitespace for height and width.");
-        System.out.println("For exit the program: -> Type 'exit'.");
     }
 
     @Override

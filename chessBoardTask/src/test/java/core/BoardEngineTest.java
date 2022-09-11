@@ -84,7 +84,7 @@ class BoardEngineTest {
         }
 
         @Test
-        void should_ReturnCorrectBoardArray_When_HeightAndAreThree() {
+        void should_ReturnCorrectBoardArray_When_HeightAndWidthAreThree() {
             //given
             int height = 3;
             int width = 3;
@@ -133,7 +133,7 @@ class BoardEngineTest {
         }
 
         @Test
-        void should_ReturnCorrectBoardArray_When_HeightZeroAandZero() {
+        void should_ReturnCorrectBoardArray_When_HeightZeroAndZero() {
             //given
             int height = 0;
             int width = 0;

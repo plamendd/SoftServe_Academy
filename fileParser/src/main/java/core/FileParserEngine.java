@@ -46,8 +46,6 @@ public class FileParserEngine implements Engine {
         printer.printExit();
     }
 
-
-
     public Reader getReader() {
         return reader;
     }

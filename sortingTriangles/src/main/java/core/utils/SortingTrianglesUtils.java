@@ -1,6 +1,8 @@
 package core.utils;
 
 public class SortingTrianglesUtils {
+    private SortingTrianglesUtils(){
+    }
 
     public  static Double parseDoubleOrNull(String value) {
         try {

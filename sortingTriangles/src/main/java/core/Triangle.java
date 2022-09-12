@@ -1,6 +1,5 @@
 package core;
 
-import java.math.BigDecimal;
 
 public class Triangle {
     private double firstSide;

@@ -26,7 +26,7 @@ public class EnvelopAnalysisEngine implements Engine {
     }
 
     @Override
-    public boolean doWork(String input) {
+    public void doWork(String input) {
         int sideCount = 4;
         Envelop firstEnvelop = new Envelop();
         Envelop secondEnvelop = new Envelop();
@@ -36,9 +36,10 @@ public class EnvelopAnalysisEngine implements Engine {
             if (!validateInput(input)) {
                 printer.printError();
                 printer.printInstructions();
-                return false;
+                return ;
             }
             sides[i] = Double.parseDouble(input);
+
             if (i < sideCount - 1) {
                 input = reader.readLine();
             }
@@ -48,14 +49,14 @@ public class EnvelopAnalysisEngine implements Engine {
         double firstEnvelopLongerSide = (sides[0] - sides[1] > 0) ? sides[0] : sides[1];
         double secondEnvelopShorterSide = (sides[2] - sides[3] > 0) ? sides[3] : sides[2];
         double secondEnvelopLongerSide = (sides[2] - sides[3] > 0) ? sides[2] : sides[3];
-        firstEnvelop.setShorterSide(firstEnvelopShorterSide);
-        firstEnvelop.setLongerSide(firstEnvelopLongerSide);
-        secondEnvelop.setShorterSide(secondEnvelopShorterSide);
-        secondEnvelop.setLongerSide(secondEnvelopLongerSide);
+        firstEnvelop.setShorterSide(firstEnvelopShorterSide)
+                .setLongerSide(firstEnvelopLongerSide);
+        secondEnvelop.setShorterSide(secondEnvelopShorterSide)
+                .setLongerSide(secondEnvelopLongerSide);
 
         printer.printResultFromEnvelopAnalysis(
                 checkIfTwoEnvelopsPass(firstEnvelop, secondEnvelop));
-        return true;
+        return ;
     }
 
     @Override
@@ -64,12 +65,12 @@ public class EnvelopAnalysisEngine implements Engine {
     }
 
 
-    private boolean validateInput(String input) {
+    boolean validateInput(String input) {
         Double sideSize = EnvelopAnalysisUtils.parseDoubleOrNull(input);
         return (sideSize != null && sideSize > 0);
     }
 
-    private boolean checkIfTwoEnvelopsPass(Envelop firstEnvelop, Envelop secondEnvelop) {
+   boolean checkIfTwoEnvelopsPass(Envelop firstEnvelop, Envelop secondEnvelop) {
         return ((firstEnvelop.getShorterSide() > secondEnvelop.getShorterSide()
                 && firstEnvelop.getLongerSide() > secondEnvelop.getLongerSide())
                 || (firstEnvelop.getShorterSide() < secondEnvelop.getShorterSide()

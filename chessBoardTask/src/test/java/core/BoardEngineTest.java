@@ -30,8 +30,8 @@ class BoardEngineTest {
 
     @Nested
     class DoWorkTests {
-        @ParameterizedTest
-        @ValueSource(strings = {"1", "1, 2, 3", "4, 4, 4, 4, 4, 4, 4", " "})
+            @ParameterizedTest
+            @ValueSource(strings = {"1", "1, 2, 3", "4, 4, 4, 4, 4, 4, 4", " "})
         void should_ReturnFalse_When_ParametersCountIsNotTwo(String args) {
             //given
             String[] arguments = args.split("\\s*,\\s*");

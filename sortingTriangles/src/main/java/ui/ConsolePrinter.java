@@ -4,7 +4,8 @@ package ui;
 import core.Triangle;
 
 public class ConsolePrinter implements TriangleSortingPrinter {
-    static int counter = 0;
+    int counter = 0;
+
 
     @Override
     public void printInstructions() {
@@ -17,12 +18,12 @@ public class ConsolePrinter implements TriangleSortingPrinter {
     }
 
     @Override
-    public void printContinue(){
+    public void printContinue() {
         System.out.println("For continue the program: -> Type 'y' or 'yes' else the program will stop.");
     }
 
     @Override
-    public void printExit(){
+    public void printExit() {
         System.out.println("Stopping the program...");
     }
 
@@ -35,9 +36,8 @@ public class ConsolePrinter implements TriangleSortingPrinter {
                 .append("[Triangle ")
                 .append(triangle.getName())
                 .append("]: ")
-                .append( String.format("%1$,.2f", triangle.getArea()))
+                .append(String.format("%1$,.2f", triangle.getArea()))
                 .append("cm.");
-
 
 
         System.out.println(builder);

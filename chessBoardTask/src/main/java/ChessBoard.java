@@ -1,6 +1,5 @@
 import core.Engine;
 
-
 public class ChessBoard {
     private Engine engine;
 
@@ -13,7 +12,7 @@ public class ChessBoard {
         return this;
     }
 
-    public void run() {
-        engine.start();
+    public void run(String [] args) {
+        engine.start(args);
     }
 }

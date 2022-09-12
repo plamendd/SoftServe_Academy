@@ -4,9 +4,13 @@ import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
+import ui.ConsolePrinter;
+import ui.ConsoleReader;
 
-import java.util.ArrayList;
+
+import java.util.Arrays;
 import java.util.List;
+import java.util.Scanner;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -16,6 +20,7 @@ class BoardEngineTest {
     @BeforeEach
     void setUp() {
         this.boardEngine = new BoardEngine();
+        boardEngine.setReader(new ConsoleReader(new Scanner(System.in))).setPrinter(new ConsolePrinter());
     }
 
     @Nested
@@ -25,60 +30,43 @@ class BoardEngineTest {
 
     @Nested
     class DoWorkTests {
+        @ParameterizedTest
+        @ValueSource(strings = {"1", "1, 2, 3", "4, 4, 4, 4, 4, 4, 4", " "})
+        void should_ReturnFalse_When_ParametersCountIsNotTwo(String args) {
+            //given
+            String[] arguments = args.split("\\s*,\\s*");
+            //when
+            boolean checkedParametersCount = boardEngine.doWork(arguments);
+            //then
+            assertFalse(checkedParametersCount);
+        }
 
-    }
-
-    @Nested
-    class CheckParametersCountTests {
         @ParameterizedTest(name = "first={0}, second={1}")
         @CsvSource(value = {"89, 2", "95, 5", "110, 12", "34, 34", "1, 1"})
         void should_ReturnTrue_When_ParametersCountIsTwo(String first, String second) {
             //given
             String[] arguments = {first, second};
             //when
-            boolean checkedParametersCount = boardEngine.checkParametersCount(arguments);
+            boolean checkedParametersCount = boardEngine.doWork(arguments);
             //then
             assertTrue(checkedParametersCount);
-        }
 
-        @ParameterizedTest
-        @ValueSource(strings = {"1", "1, 2, 3", "4, 4, 4, 4, 4, 4, 4", ""})
-        void should_ReturnFalse_When_ParametersCountIsNotTwo(String args) {
-            //given
-            String[] arguments = args.split("\\s*,\\s*");
-            //when
-            boolean checkedParametersCount = boardEngine.checkParametersCount(arguments);
-            //then
-            assertFalse(checkedParametersCount);
-        }
-
-    }
-
-    @Nested
-    class CheckParametersRangeTests {
-        @ParameterizedTest(name = "first={0}, second={1}")
-        @CsvSource(value = {"89, 2", "95, 5", "110, 12", "34, 323242", "1, 1"})
-        void should_ReturnTrue_When_ParametersInRange(String first, String second) {
-            //given
-            String one = first;
-            String two = second;
-            //when
-            boolean checkedParametersRange = boardEngine.checkParametersRange(one, two);
-            //then
-            assertTrue(checkedParametersRange);
         }
 
         @ParameterizedTest(name = "first={0}, second={1}")
         @CsvSource(value = {"89, 0", "95, -1", "110, -65", "0, 323242", "-1, -1", "0,0"})
         void should_ReturnFalse_When_ParametersNotInRange(String first, String second) {
             //given
-            String one = first;
-            String two = second;
+            String[] args = new String[2];
+            args[0] = first;
+            args[1] = second;
             //when
-            boolean checkedParametersRange = boardEngine.checkParametersRange(one, two);
+            boolean isParametersInRange = boardEngine.doWork(args);
             //then
-            assertFalse(checkedParametersRange);
+            assertFalse(isParametersInRange);
         }
+
+
     }
 
     @Nested
@@ -88,35 +76,29 @@ class BoardEngineTest {
             //given
             int height = 3;
             int width = 1;
-
             char[][] expected = {
                     {'*'},
                     {' '},
                     {'*'},
             };
-
             //when
             char[][] generatedBoard = boardEngine.generateBoard(height, width);
-
             //then
             assertArrayEquals(expected, generatedBoard);
         }
 
         @Test
-        void should_ReturnCorrectBoardArray_When_HeightAndAreThree() {
+        void should_ReturnCorrectBoardArray_When_HeightAndWidthAreThree() {
             //given
             int height = 3;
             int width = 3;
-
             char[][] expected = {
                     {'*', ' ', '*'},
                     {' ', '*', ' '},
                     {'*', ' ', '*'},
             };
-
             //when
             char[][] generatedBoard = boardEngine.generateBoard(height, width);
-
             //then
             assertArrayEquals(expected, generatedBoard);
         }
@@ -126,16 +108,13 @@ class BoardEngineTest {
             //given
             int height = 3;
             int width = 2;
-
             char[][] expected = {
                     {'*', ' '},
                     {' ', '*'},
                     {'*', ' '},
             };
-
             //when
             char[][] generatedBoard = boardEngine.generateBoard(height, width);
-
             //then
             assertArrayEquals(expected, generatedBoard);
         }
@@ -145,15 +124,12 @@ class BoardEngineTest {
             //given
             int height = 1;
             int width = 1;
-
             char[][] expected = {
                     {'*'},
 
             };
-
             //when
             char[][] generatedBoard = boardEngine.generateBoard(height, width);
-
             //then
             assertArrayEquals(expected, generatedBoard);
 
@@ -161,23 +137,15 @@ class BoardEngineTest {
         }
 
         @Test
-        void should_ReturnCorrectBoardArray_When_HeightZeroAandZero() {
+        void should_ReturnCorrectBoardArray_When_HeightZeroAndZero() {
             //given
             int height = 0;
             int width = 0;
-
-            char[][] expected = {
-
-
-            };
-
+            char[][] expected = {};
             //when
             char[][] generatedBoard = boardEngine.generateBoard(height, width);
-
             //then
             assertArrayEquals(expected, generatedBoard);
-
-
         }
     }
 }

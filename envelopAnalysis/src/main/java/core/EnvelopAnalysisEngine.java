@@ -26,7 +26,7 @@ public class EnvelopAnalysisEngine implements Engine {
     }
 
     @Override
-    public void doWork(String input) {
+    public boolean doWork(String input) {
         int sideCount = 4;
         Envelop firstEnvelop = new Envelop();
         Envelop secondEnvelop = new Envelop();
@@ -35,7 +35,8 @@ public class EnvelopAnalysisEngine implements Engine {
         for (int i = 0; i < sideCount; i++) {
             if (!validateInput(input)) {
                 printer.printError();
-                return;
+                printer.printInstructions();
+                return false;
             }
             sides[i] = Double.parseDouble(input);
             if (i < sideCount - 1) {
@@ -54,7 +55,7 @@ public class EnvelopAnalysisEngine implements Engine {
 
         printer.printResultFromEnvelopAnalysis(
                 checkIfTwoEnvelopsPass(firstEnvelop, secondEnvelop));
-        return;
+        return true;
     }
 
     @Override

@@ -5,6 +5,7 @@ import ui.BoardPrinter;
 import ui.Reader;
 
 
+
 public class BoardEngine implements Engine {
     private Reader reader;
     private BoardPrinter printer;
@@ -81,23 +82,24 @@ public class BoardEngine implements Engine {
         return board;
     }
 
-    public Reader getReader() {
-        return reader;
+
+        public Reader getReader () {
+            return reader;
+        }
+
+        public BoardPrinter getPrinter () {
+            return printer;
+        }
+
+        public BoardEngine setReader (Reader reader){
+            this.reader = reader;
+            return this;
+        }
+
+        public BoardEngine setPrinter (BoardPrinter printer){
+            this.printer = printer;
+            return this;
+        }
+
+
     }
-
-    public BoardPrinter getPrinter() {
-        return printer;
-    }
-
-    public BoardEngine setReader(Reader reader) {
-        this.reader = reader;
-        return this;
-    }
-
-    public BoardEngine setPrinter(BoardPrinter printer) {
-        this.printer = printer;
-        return this;
-    }
-
-
-}

@@ -8,6 +8,8 @@ import ui.ConsolePrinter;
 import ui.ConsoleReader;
 
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -48,13 +50,14 @@ class BoardEngineTest {
             boolean checkedParametersCount = boardEngine.doWork(arguments);
             //then
             assertTrue(checkedParametersCount);
+
         }
 
         @ParameterizedTest(name = "first={0}, second={1}")
         @CsvSource(value = {"89, 0", "95, -1", "110, -65", "0, 323242", "-1, -1", "0,0"})
         void should_ReturnFalse_When_ParametersNotInRange(String first, String second) {
             //given
-            String [] args = new String[2];
+            String[] args = new String[2];
             args[0] = first;
             args[1] = second;
             //when
@@ -62,6 +65,7 @@ class BoardEngineTest {
             //then
             assertFalse(isParametersInRange);
         }
+
 
     }
 

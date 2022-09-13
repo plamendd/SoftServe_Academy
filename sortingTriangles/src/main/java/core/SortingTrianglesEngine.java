@@ -3,6 +3,7 @@ package core;
 import core.utils.SortingTrianglesUtils;
 import ui.TriangleSortingPrinter;
 import ui.Reader;
+
 import java.util.Arrays;
 import java.util.PriorityQueue;
 
@@ -20,7 +21,6 @@ public class SortingTrianglesEngine implements Engine {
     @Override
     public void start() {
         String input;
-
         printer.printInstructions();
         input = reader.readLine();
         doWork(input);
@@ -85,23 +85,22 @@ public class SortingTrianglesEngine implements Engine {
         printer.printExit();
     }
 
-
-    boolean validateInput(String input) {
+    private boolean validateInput(String input) {
         Double sideSize = SortingTrianglesUtils.parseDoubleOrNull(input);
         return (sideSize != null && sideSize > 0);
     }
 
     //calculate area rounded by second sign after the delimeter
-    double calculateAreaByHeron(double firstSide, double secondSide, double thirdSide) {
-         double area = 0.25 * Math.sqrt((firstSide + secondSide + thirdSide)
+    private double calculateAreaByHeron(double firstSide, double secondSide, double thirdSide) {
+        double area = 0.25 * Math.sqrt((firstSide + secondSide + thirdSide)
                 * (-firstSide + secondSide + thirdSide)
                 * (firstSide - secondSide + thirdSide)
                 * (firstSide + secondSide - thirdSide));
 
-         return  Math.round(area * 100.0) / 100.0;
+        return Math.round(area * 100.0) / 100.0;
     }
 
-    boolean isValidTriangle(Triangle triangle) {
+    private boolean isValidTriangle(Triangle triangle) {
         return (triangle.getFirstSide() + triangle.getSecondSide() > triangle.getThirdSide())
                 && (triangle.getSecondSide() + triangle.getThirdSide() > triangle.getFirstSide())
                 && (triangle.getFirstSide() + triangle.getThirdSide() > triangle.getSecondSide());

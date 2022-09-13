@@ -6,6 +6,7 @@ import ui.Reader;
 
 
 public class NumberInWordsEngine implements Engine {
+    private static final int RANGE = 999;
     private Reader reader;
     private NumberInWordsPrinter printer;
 
@@ -67,6 +68,10 @@ public class NumberInWordsEngine implements Engine {
             return;
         }
         if (!checkInput(input)) {
+            printer.printError();
+            return;
+        }
+        if(Integer.parseInt(input) > RANGE){
             printer.printError();
             return;
         }

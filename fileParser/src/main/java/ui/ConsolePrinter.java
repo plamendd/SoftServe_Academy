@@ -25,4 +25,9 @@ public class ConsolePrinter implements FileParserPrinter {
         System.out.println("Stopping the program...");
     }
 
+    @Override
+    public void printCount(int count){
+        System.out.println("counts: " + count);
+    }
+
 }

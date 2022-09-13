@@ -7,7 +7,6 @@ Parameters are passed in the order given in the job description.
 -Chess board
 
 Draw a chessboard with the given dimensions of height and width, according to the principle:
-
 * * * * *
 * * * * *
 * * * * *

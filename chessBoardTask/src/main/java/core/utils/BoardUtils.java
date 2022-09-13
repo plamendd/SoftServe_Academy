@@ -7,7 +7,7 @@ public class BoardUtils {
     public  static Integer parseIntOrNull(String value) {
         try {
             return Integer.parseInt(value);
-        } catch (NumberFormatException e) {
+        } catch (NumberFormatException | NullPointerException e) {
             return null;
         }
     }

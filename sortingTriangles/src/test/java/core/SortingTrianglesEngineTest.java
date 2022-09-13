@@ -26,6 +26,40 @@ class SortingTrianglesEngineTest {
                 .setReader(new ConsoleReader(new Scanner(System.in)));
     }
 
+    @Nested
+    class DoWorkTests{
+        @ParameterizedTest
+        @ValueSource(strings = {"1", "1, 2, 3", "4, 4, 4, 4, 4, 5", " ", "","3.3, 1.3"})
+        void should_ReturnFalse_WhenParametersCountIsInValid(String args){
+
+            boolean checkedParametersCount = sortingTrianglesEngine.doWork(args);
+
+            assertFalse(checkedParametersCount);
+
+        }
+
+        @ParameterizedTest
+        @ValueSource(strings = {"c, 1, 4 ,c", "-1, 0, -3, 0", "0, 0, 0, 5", "'',2.4,3 ,19", "'', '', '',''"})
+        void should_ReturnFalse_WhenParametersCountIsIValidAndParametersInvalid(String args){
+
+            boolean checkedParametersInvalid = sortingTrianglesEngine.doWork(args);
+
+            assertFalse(checkedParametersInvalid);
+
+        }
+
+        @ParameterizedTest
+        @ValueSource(strings = {"1, 4, 5, 5", "sec, 3, 4, 5", "100, 3.5, 3.5, 6", "1, 1.4, 1.4, 2.2", "first, 18.3, 16, 7" })
+        void should_ReturnTrue_When_ParametersCountValidAndParametersValid(String args) {
+
+            boolean checkWithValidParams = sortingTrianglesEngine.doWork(args);
+
+            assertTrue(checkWithValidParams);
+        }
+
+    }
+
+
 
     @Nested
     class ValidateInputTests {

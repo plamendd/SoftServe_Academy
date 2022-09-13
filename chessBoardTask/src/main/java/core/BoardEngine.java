@@ -5,7 +5,6 @@ import ui.BoardPrinter;
 import ui.Reader;
 
 
-
 public class BoardEngine implements Engine {
     private Reader reader;
     private BoardPrinter printer;
@@ -59,16 +58,8 @@ public class BoardEngine implements Engine {
         return (height != null && height > 0) && (width != null && width > 0);
     }
 
-    /**
-     * Generate 2D Matrix with given dimensions.
-     * Fills it with '*' -> when row is even number == coll is even number
-     * Fills it with ' ' -> when its not.
-     *
-     * @param height
-     * @param width
-     * @return 2D matrix of chars;
-     */
-    char[][] generateBoard(int height, int width) {
+   //generate board with height and width by given dimensions (same as chessboard)
+    private char[][] generateBoard(int height, int width) {
         char[][] board = new char[height][width];
         for (int col = 0; col < height; col++) {
             for (int row = 0; row < width; row++) {
@@ -83,23 +74,23 @@ public class BoardEngine implements Engine {
     }
 
 
-        public Reader getReader () {
-            return reader;
-        }
-
-        public BoardPrinter getPrinter () {
-            return printer;
-        }
-
-        public BoardEngine setReader (Reader reader){
-            this.reader = reader;
-            return this;
-        }
-
-        public BoardEngine setPrinter (BoardPrinter printer){
-            this.printer = printer;
-            return this;
-        }
-
-
+    public Reader getReader() {
+        return reader;
     }
+
+    public BoardPrinter getPrinter() {
+        return printer;
+    }
+
+    public BoardEngine setReader(Reader reader) {
+        this.reader = reader;
+        return this;
+    }
+
+    public BoardEngine setPrinter(BoardPrinter printer) {
+        this.printer = printer;
+        return this;
+    }
+
+
+}

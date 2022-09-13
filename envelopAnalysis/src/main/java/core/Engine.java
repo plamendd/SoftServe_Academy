@@ -4,7 +4,7 @@ public interface Engine {
 
     void start();
 
-    void doWork(String input);
+    boolean doWork(String [] trianglesSides);
 
     void stop();
 }

@@ -22,8 +22,13 @@ public class SortingTrianglesEngine implements Engine {
     public void start() {
         String input;
         printer.printInstructions();
-        input = reader.readLine();
-        doWork(input);
+        do {
+            input = reader.readLine();
+            doWork(input);
+            input = reader.readLine();
+        }
+        while (("y".equalsIgnoreCase(input) || "yes".equalsIgnoreCase(input)));
+
         while (!queue.isEmpty()) {
             printer.printResultFromSortingTriangles(queue.poll());
         }
@@ -31,53 +36,47 @@ public class SortingTrianglesEngine implements Engine {
     }
 
     @Override
-    public void doWork(String input) {
+    public boolean doWork(String input) {
         int parametersCount = 4;
-        while (true) {
-            String[] splitInput = input.split(",");
-            if (splitInput.length != parametersCount) {
-                printer.printError();
-                printer.printInstructions();
-                return;
-            }
-            Arrays.stream(splitInput).forEach(String::trim);
 
-            Triangle triangle = new Triangle();
-            triangle.setName(splitInput[0]);
-
-            for (int i = 1; i <= 3; i++) {
-                if (!validateInput(splitInput[i])) {
-                    printer.printError();
-                    printer.printInstructions();
-                    return;
-                }
-            }
-
-            triangle.setFirstSide(Double.parseDouble(splitInput[1]))
-                    .setSecondSide(Double.parseDouble(splitInput[2]))
-                    .setThirdSide(Double.parseDouble(splitInput[3]));
-
-            if (!isValidTriangle(triangle)) {
-                printer.printError();
-                printer.printInstructions();
-                return;
-            }
-
-            triangle.setArea(calculateAreaByHeron(triangle.getFirstSide(),
-                    triangle.getSecondSide(), triangle.getThirdSide()));
-
-            queue.add(triangle);
+        String[] splitInput = input.split(",");
+        if (splitInput.length != parametersCount) {
+            printer.printError();
+            printer.printInstructions();
             printer.printContinue();
-            input = reader.readLine();
-            if ("y".equalsIgnoreCase(input) || "yes".equalsIgnoreCase(input)) {
-                printer.printInstructions();
-                input = reader.readLine();
-            } else {
-                break;
-            }
+            return false;
+        }
+        Arrays.stream(splitInput).forEach(String::trim);
 
+        Triangle triangle = new Triangle();
+        triangle.setName(splitInput[0]);
+
+        for (int i = 1; i <= 3; i++) {
+            if (!validateInput(splitInput[i])) {
+                printer.printError();
+                printer.printInstructions();
+                printer.printContinue();
+                return false;
+            }
         }
 
+        triangle.setFirstSide(Double.parseDouble(splitInput[1]))
+                .setSecondSide(Double.parseDouble(splitInput[2]))
+                .setThirdSide(Double.parseDouble(splitInput[3]));
+
+        if (!isValidTriangle(triangle)) {
+            printer.printError();
+            printer.printInstructions();
+            printer.printContinue();
+            return false;
+        }
+
+        triangle.setArea(calculateAreaByHeron(triangle.getFirstSide(),
+                triangle.getSecondSide(), triangle.getThirdSide()));
+
+        queue.add(triangle);
+        printer.printContinue();
+        return true;
     }
 
     @Override

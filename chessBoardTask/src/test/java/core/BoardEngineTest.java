@@ -8,11 +8,12 @@ import ui.ConsolePrinter;
 import ui.ConsoleReader;
 
 
-import java.util.Arrays;
-import java.util.List;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.Scanner;
 
 import static org.junit.jupiter.api.Assertions.*;
+
 
 class BoardEngineTest {
     private BoardEngine boardEngine;
@@ -23,15 +24,11 @@ class BoardEngineTest {
         boardEngine.setReader(new ConsoleReader(new Scanner(System.in))).setPrinter(new ConsolePrinter());
     }
 
-    @Nested
-    class StartTests {
-
-    }
 
     @Nested
     class DoWorkTests {
-            @ParameterizedTest
-            @ValueSource(strings = {"1", "1, 2, 3", "4, 4, 4, 4, 4, 4, 4", " "})
+        @ParameterizedTest
+        @ValueSource(strings = {"1", "1, 2, 3", "4, 4, 4, 4, 4, 4, 4", " "})
         void should_ReturnFalse_When_ParametersCountIsNotTwo(String args) {
             //given
             String[] arguments = args.split("\\s*,\\s*");
@@ -72,7 +69,9 @@ class BoardEngineTest {
     @Nested
     class GenerateBoardTests {
         @Test
-        void should_ReturnCorrectBoardArray_When_HeightThreeAndWidthOne() {
+        void should_ReturnCorrectBoardArray_When_HeightThreeAndWidthOne() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+            Method method = BoardEngine.class.getDeclaredMethod("generateBoard", int.class, int.class);
+            method.setAccessible(true);
             //given
             int height = 3;
             int width = 1;
@@ -82,13 +81,15 @@ class BoardEngineTest {
                     {'*'},
             };
             //when
-            char[][] generatedBoard = boardEngine.generateBoard(height, width);
+            char[][] generatedBoard = (char[][]) method.invoke(boardEngine, height, width);
             //then
             assertArrayEquals(expected, generatedBoard);
         }
 
         @Test
-        void should_ReturnCorrectBoardArray_When_HeightAndWidthAreThree() {
+        void should_ReturnCorrectBoardArray_When_HeightAndWidthAreThree() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+            Method method = BoardEngine.class.getDeclaredMethod("generateBoard", int.class, int.class);
+            method.setAccessible(true);
             //given
             int height = 3;
             int width = 3;
@@ -98,13 +99,15 @@ class BoardEngineTest {
                     {'*', ' ', '*'},
             };
             //when
-            char[][] generatedBoard = boardEngine.generateBoard(height, width);
+            char[][] generatedBoard = (char[][]) method.invoke(boardEngine, height, width);
             //then
             assertArrayEquals(expected, generatedBoard);
         }
 
         @Test
-        void should_ReturnCorrectBoardArray_When_HeightThreeAndWidthTwo() {
+        void should_ReturnCorrectBoardArray_When_HeightThreeAndWidthTwo() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+            Method method = BoardEngine.class.getDeclaredMethod("generateBoard", int.class, int.class);
+            method.setAccessible(true);
             //given
             int height = 3;
             int width = 2;
@@ -114,13 +117,15 @@ class BoardEngineTest {
                     {'*', ' '},
             };
             //when
-            char[][] generatedBoard = boardEngine.generateBoard(height, width);
+            char[][] generatedBoard = (char[][]) method.invoke(boardEngine, height, width);
             //then
             assertArrayEquals(expected, generatedBoard);
         }
 
         @Test
-        void should_ReturnCorrectBoardArray_When_HeightOneAndWidthOne() {
+        void should_ReturnCorrectBoardArray_When_HeightOneAndWidthOne() throws InvocationTargetException, IllegalAccessException, NoSuchMethodException {
+            Method method = BoardEngine.class.getDeclaredMethod("generateBoard", int.class, int.class);
+            method.setAccessible(true);
             //given
             int height = 1;
             int width = 1;
@@ -129,23 +134,25 @@ class BoardEngineTest {
 
             };
             //when
-            char[][] generatedBoard = boardEngine.generateBoard(height, width);
-            //then
+            char[][] generatedBoard = (char[][]) method.invoke(boardEngine, height, width);
             assertArrayEquals(expected, generatedBoard);
 
 
         }
 
         @Test
-        void should_ReturnCorrectBoardArray_When_HeightZeroAndZero() {
+        void should_ReturnCorrectBoardArray_When_HeightZeroAndZero() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+            Method method = BoardEngine.class.getDeclaredMethod("generateBoard", int.class, int.class);
+            method.setAccessible(true);
             //given
             int height = 0;
             int width = 0;
             char[][] expected = {};
             //when
-            char[][] generatedBoard = boardEngine.generateBoard(height, width);
+            char[][] generatedBoard = (char[][]) method.invoke(boardEngine, height, width);
             //then
             assertArrayEquals(expected, generatedBoard);
         }
     }
 }
+

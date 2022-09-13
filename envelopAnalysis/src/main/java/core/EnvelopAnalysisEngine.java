@@ -16,8 +16,15 @@ public class EnvelopAnalysisEngine implements Engine {
         String input;
         do {
             printer.printInstructions();
-            input = reader.readLine();
-            doWork(input);
+            String[] envelopsSides = new String[4];
+            for (int i = 0; i < 4; i++) {
+                input = reader.readLine();
+                if (input.isEmpty()) {
+                    break;
+                }
+                envelopsSides[i] = input;
+            }
+            doWork(envelopsSides);
             printer.printContinue();
             input = reader.readLine();
         }
@@ -26,29 +33,32 @@ public class EnvelopAnalysisEngine implements Engine {
     }
 
     @Override
-    public void doWork(String input) {
+    public boolean doWork(String[] envelopsSides) {
         int sideCount = 4;
+
+        if (envelopsSides.length != 4) {
+            printer.printError();
+            printer.printInstructions();
+            return false;
+        }
+
         Envelop firstEnvelop = new Envelop();
         Envelop secondEnvelop = new Envelop();
 
         double[] sides = new double[sideCount];
         for (int i = 0; i < sideCount; i++) {
-            if (!validateInput(input)) {
+            if (!validateInput(envelopsSides[i])) {
                 printer.printError();
                 printer.printInstructions();
-                return ;
+                return false;
             }
-            sides[i] = Double.parseDouble(input);
-
-            if (i < sideCount - 1) {
-                input = reader.readLine();
-            }
-
+            sides[i] = Double.parseDouble(envelopsSides[i]);
         }
         double firstEnvelopShorterSide = (sides[0] - sides[1] > 0) ? sides[1] : sides[0];
         double firstEnvelopLongerSide = (sides[0] - sides[1] > 0) ? sides[0] : sides[1];
         double secondEnvelopShorterSide = (sides[2] - sides[3] > 0) ? sides[3] : sides[2];
         double secondEnvelopLongerSide = (sides[2] - sides[3] > 0) ? sides[2] : sides[3];
+
         firstEnvelop.setShorterSide(firstEnvelopShorterSide)
                 .setLongerSide(firstEnvelopLongerSide);
         secondEnvelop.setShorterSide(secondEnvelopShorterSide)
@@ -56,7 +66,7 @@ public class EnvelopAnalysisEngine implements Engine {
 
         printer.printResultFromEnvelopAnalysis(
                 checkIfTwoEnvelopsPass(firstEnvelop, secondEnvelop));
-        return ;
+        return true;
     }
 
     @Override
@@ -65,12 +75,12 @@ public class EnvelopAnalysisEngine implements Engine {
     }
 
 
-    boolean validateInput(String input) {
+    private boolean validateInput(String input) {
         Double sideSize = EnvelopAnalysisUtils.parseDoubleOrNull(input);
         return (sideSize != null && sideSize > 0);
     }
 
-   boolean checkIfTwoEnvelopsPass(Envelop firstEnvelop, Envelop secondEnvelop) {
+    private boolean checkIfTwoEnvelopsPass(Envelop firstEnvelop, Envelop secondEnvelop) {
         return ((firstEnvelop.getShorterSide() > secondEnvelop.getShorterSide()
                 && firstEnvelop.getLongerSide() > secondEnvelop.getLongerSide())
                 || (firstEnvelop.getShorterSide() < secondEnvelop.getShorterSide()

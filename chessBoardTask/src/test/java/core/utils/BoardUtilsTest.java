@@ -23,7 +23,6 @@ class BoardUtilsTest {
             assertTrue(expected);
         }
 
-
         @ParameterizedTest
         @ValueSource(strings = {"ewqe","-13eq","0qe","c","ew.,.","","-=+"})
         void should_ReturnNull_When_Input_Is_NotANumber(String valueOfString){

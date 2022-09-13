@@ -157,8 +157,6 @@ class EnvelopAnalysisEngineTest {
             assertFalse((Boolean) method.invoke(envelopAnalysisEngine, first, second));
         }
 
-
     }
-
 
 }

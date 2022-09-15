@@ -16,21 +16,18 @@ public class FileParserEngine implements Engine {
     public void start() {
         printer.printInstructions();
         String input = reader.readLine();
-
         doWork(input);
-
         stop();
-        return;
 
     }
 
     @Override
-    public void doWork(String input) {
+    public boolean doWork(String input) {
         String [] splitInput = input.split("\\s");
 
         if (splitInput.length < 2 ||  splitInput.length > 3 ){
             printer.printError();
-            return;
+            return false;
         }
         if (splitInput.length == 2){
             this.setFileParserStrategy(new FileParserWordCounter());
@@ -39,6 +36,7 @@ public class FileParserEngine implements Engine {
             this.setFileParserStrategy(new FileParserWordReplacer());
         }
         this.getFileParserStrategy().fileParsing(splitInput);
+        return true;
     }
 
     @Override

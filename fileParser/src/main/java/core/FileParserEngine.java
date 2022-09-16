@@ -29,9 +29,12 @@ public class FileParserEngine implements Engine {
             printer.printError();
             return false;
         }
+        //if parameters  are  two -> Wordcounter mode strategy.
         if (splitInput.length == 2){
             this.setFileParserStrategy(new FileParserWordCounter());
         }
+
+        //if parameters  are  three -> Wordreplacer mode strategy.
         if (splitInput.length == 3){
             this.setFileParserStrategy(new FileParserWordReplacer());
         }

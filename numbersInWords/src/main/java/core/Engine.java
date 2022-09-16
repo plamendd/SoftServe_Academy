@@ -4,7 +4,7 @@ public interface Engine {
 
     void start(String [] args);
 
-    void doWork(String input);
+    boolean doWork(String input);
 
     void stop();
 }

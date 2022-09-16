@@ -71,9 +71,6 @@ public class SortingTrianglesEngine implements Engine {
             return false;
         }
 
-        triangle.setArea(calculateAreaByHeron(triangle.getFirstSide(),
-                triangle.getSecondSide(), triangle.getThirdSide()));
-
         queue.add(triangle);
         printer.printContinue();
         return true;
@@ -89,16 +86,9 @@ public class SortingTrianglesEngine implements Engine {
         return (sideSize != null && sideSize > 0);
     }
 
-    //calculate area rounded by second sign after the delimeter
-    private double calculateAreaByHeron(double firstSide, double secondSide, double thirdSide) {
-        double area = 0.25 * Math.sqrt((firstSide + secondSide + thirdSide)
-                * (-firstSide + secondSide + thirdSide)
-                * (firstSide - secondSide + thirdSide)
-                * (firstSide + secondSide - thirdSide));
 
-        return Math.round(area * 100.0) / 100.0;
-    }
 
+    //sum of two sides have to be more than third side.
     private boolean isValidTriangle(Triangle triangle) {
         return (triangle.getFirstSide() + triangle.getSecondSide() > triangle.getThirdSide())
                 && (triangle.getSecondSide() + triangle.getThirdSide() > triangle.getFirstSide())

@@ -6,8 +6,18 @@ public class Triangle {
     private double secondSide;
     private double thirdSide;
     private String name;
-    private double area;
 
+    //calculate area rounded by second sign after the delimeter.
+    public double calculateAreaByHeron(double firstSide, double secondSide, double thirdSide) {
+        return Math.round((0.25 * Math.sqrt((firstSide + secondSide + thirdSide)
+                * (-firstSide + secondSide + thirdSide)
+                * (firstSide - secondSide + thirdSide)
+                * (firstSide + secondSide - thirdSide))) * 100.0) / 100.0;
+    }
+    @Override
+    public String toString() {
+        return "[Triangle " + getName() + "]: " + calculateAreaByHeron(firstSide, secondSide, thirdSide) + "cm.";
+    }
 
     public double getFirstSide() {
         return firstSide;
@@ -44,19 +54,5 @@ public class Triangle {
     public Triangle setName(String name) {
         this.name = name;
         return this;
-    }
-
-    public double getArea() {
-        return area;
-    }
-
-    public Triangle setArea(double area) {
-        this.area = area;
-        return this;
-    }
-
-    @Override
-    public String toString() {
-        return "[Triangle " + getName() + "]: " + getArea() + "cm.";
     }
 }

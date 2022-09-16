@@ -22,12 +22,12 @@ public class TriangleSorting {
     }
 
     public static void main(String[] args) {
-        TriangleSorting trianlgeSorting = new TriangleSorting();
-        trianlgeSorting.setEngine(new SortingTrianglesEngine()
+        TriangleSorting triangleSorting = new TriangleSorting();
+        triangleSorting.setEngine(new SortingTrianglesEngine()
                 .setPrinter(new ConsolePrinter())
                 .setReader(new ConsoleReader(new Scanner(System.in))));
 
-        trianlgeSorting.run();
+        triangleSorting.run();
 
     }
 

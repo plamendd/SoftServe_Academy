@@ -36,7 +36,10 @@ public class ConsolePrinter implements TriangleSortingPrinter {
                 .append("[Triangle ")
                 .append(triangle.getName())
                 .append("]: ")
-                .append(String.format("%1$,.2f", triangle.getArea()))
+                .append(String.format("%1$,.2f",
+                        triangle.calculateAreaByHeron(triangle.getFirstSide(),
+                        triangle.getSecondSide(),
+                                triangle.getThirdSide())))
                 .append("cm.");
 
 

@@ -13,6 +13,9 @@ public class FileParserWordCounter implements FileParserStrategy {
     private int counter = 0;
 
     @Override
+    /**
+     * caunts all matches of word in a file with new given word from arguments
+     */
     public boolean fileParsing(String[] args) {
         FileParserPrinter printer = new ConsolePrinter();
         String path = args[0];

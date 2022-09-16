@@ -60,24 +60,24 @@ public class NumberInWordsEngine implements Engine {
     }
 
     @Override
-    public void doWork(String input) {
+    public boolean doWork(String input) {
         String[] splitInput = input.split("\\s");
 
         if (splitInput.length != 1) {
             printer.printError();
-            return;
+            return false;
         }
         if (!checkInput(input)) {
             printer.printError();
-            return;
+            return false;
         }
         if(Integer.parseInt(input) > RANGE){
             printer.printError();
-            return;
+            return false;
         }
         String numberInWord = convertNumberToWordUnderThousand(Integer.parseInt(input));
         printer.printResult(numberInWord.trim());
-        return;
+        return true;
     }
 
 

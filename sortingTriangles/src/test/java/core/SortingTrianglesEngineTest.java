@@ -82,22 +82,6 @@ class SortingTrianglesEngineTest {
     }
 
     @Nested
-    class CalculatedAreaByHeronTests {
-        @Test
-        void shouldReturnCorrectArea_WhenCorrectSides() throws NoSuchMethodException {
-            Method method = SortingTrianglesEngine.class.getDeclaredMethod("calculateAreaByHeron", double.class, double.class, double.class );
-            method.setAccessible(true);
-            assertAll(
-                    () -> assertEquals(6.0, method.invoke(sortingTrianglesEngine,3, 4, 5)),
-                    () -> assertEquals(5.41, method.invoke(sortingTrianglesEngine,3.5, 3.5, 6)),
-                    () -> assertEquals(0.95, method.invoke(sortingTrianglesEngine,1.4, 1.4, 2.2)),
-                    () -> assertEquals(55.50, method.invoke(sortingTrianglesEngine,18.3, 16, 7)),
-                    () -> assertEquals(3594.67, method.invoke(sortingTrianglesEngine,110.18, 238.6, 136))
-            );
-        }
-    }
-
-    @Nested
     class IsValidTriangleTests{
         @ParameterizedTest
         @ValueSource(strings = {"3 4 5", "3.5 3.5 6", "1.4 1.4 2.2", "18.3 16 7", "110.18 238.6 136"})

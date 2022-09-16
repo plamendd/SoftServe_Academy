@@ -17,7 +17,8 @@ public class EnvelopAnalysisEngine implements Engine {
         do {
             printer.printInstructions();
             String[] envelopsSides = new String[4];
-            for (int i = 0; i < 4; i++) {
+
+            for (int i = 0; i < envelopsSides.length; i++) {
                 input = reader.readLine();
                 if (input.isEmpty()) {
                     break;
@@ -36,7 +37,7 @@ public class EnvelopAnalysisEngine implements Engine {
     public boolean doWork(String[] envelopsSides) {
         int sideCount = 4;
 
-        if (envelopsSides.length != 4) {
+        if (envelopsSides.length != sideCount) {
             printer.printError();
             printer.printInstructions();
             return false;
@@ -80,6 +81,7 @@ public class EnvelopAnalysisEngine implements Engine {
         return (sideSize != null && sideSize > 0);
     }
 
+    //compare side by side envelops
     private boolean checkIfTwoEnvelopsPass(Envelop firstEnvelop, Envelop secondEnvelop) {
         return ((firstEnvelop.getShorterSide() > secondEnvelop.getShorterSide()
                 && firstEnvelop.getLongerSide() > secondEnvelop.getLongerSide())

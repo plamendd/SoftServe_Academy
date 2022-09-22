@@ -1,1 +1,1 @@
-[{"firstName":"Upper","lastName":"Student","rank":4.0}]
+[{"firstName":"Middle","lastName":"Student","rank":3.0},{"firstName":"Upper","lastName":"Student","rank":4.0}]

@@ -1,3 +1,5 @@
+package jsonparser;
+
 public class Student {
     private String firstName;
     private String lastName;
@@ -38,4 +40,6 @@ public class Student {
                 ", rank=" + rank +
                 '}';
     }
+
+
 }

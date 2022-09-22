@@ -1,0 +1,15 @@
+
+J
+java:S3740="/Provide the parametrized type for this generic.(ˆ¿ûìúÿÿÿÿ
+J
+java:S3740>"/Provide the parametrized type for this generic.(îíÛñıÿÿÿÿ
+f	java:S117\"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(öÕãş
+f	java:S117f"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ıÃ©å
+k	java:S117k"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ššûûÿÿÿÿ
+c	java:S116"NRename this field "CPU" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‘ÚÔ¦
+h	java:S116"NRename this field "GPU" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ü» ¶ûÿÿÿÿ
+b	java:S116"NRename this field "HDD" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‘˜ú%
+Q	java:S125"<This block of commented-out lines of code should be removed.(ßŠäñ
+c	java:S116G"NRename this field "CPU" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‘ÚÔ¦
+h	java:S116I"NRename this field "GPU" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ü» ¶ûÿÿÿÿ
+b	java:S116J"NRename this field "HDD" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‘˜ú%

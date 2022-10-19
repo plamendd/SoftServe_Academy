@@ -34,7 +34,7 @@ public class Computer {
         return CPU;
     }
 
-    public String getMotherboard() {
+    public String getMotherboardTest() {
         return motherboard;
     }
 
@@ -46,7 +46,7 @@ public class Computer {
         return HDD;
     }
 
-    public String getOperatingSystem() {
+    public String getOperatingSystemTestAdd() {
         return operatingSystem;
     }
 
@@ -57,7 +57,7 @@ public class Computer {
     public int getAmountOfRAM() {
         return amountOfRAM;
     }
-
+   // addding some test stuff
     public static Builder builder() {
         return new Builder() {
             @Override

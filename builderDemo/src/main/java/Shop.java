@@ -5,7 +5,7 @@ import builder.Laptop;
 public class Shop {
     public static void main(String[] args) {
            // Computer computer = new Computer("Intel i7", "MSI B360M-MORTAR","gtx 1050ti", "samsung evo 870","windows 10", 500, 16);
-
+                
 
         Computer computer = Computer.builder()
                 .setPowerSupply(500)
